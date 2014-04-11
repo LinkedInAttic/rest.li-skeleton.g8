@@ -1,0 +1,12 @@
+apply plugin: 'jetty'
+apply plugin: 'pegasus'
+
+ext.apiProject = project(':$name;format="norm"$-api')
+
+dependencies {
+  compile project(path: ':$name;format="norm"$-api', configuration: 'dataTemplate')
+  compile spec.product.pegasus.r2Jetty
+  compile spec.product.pegasus.restliServer
+  compile spec.product.pegasus.restliNettyStandalone
+  compile spec.product.pegasus.restliServerStandalone
+}

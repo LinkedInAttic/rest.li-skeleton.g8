@@ -1,0 +1,2 @@
+include '$name;format="norm"$-api'
+include '$name;format="norm"$-server'
