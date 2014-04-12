@@ -1,0 +1,32 @@
+#!/bin/sh
+
+NAME=`basename $0`
+DIR=`dirname $0`
+absolute_base_dir=$(cd $DIR/..; pwd)
+
+if [ -z "$JAVA_HOME" ]; then
+  JAVA="java"
+else
+  JAVA="$JAVA_HOME/bin/java"
+fi
+
+help () {
+  echo "Usage : $NAME <command>"
+  echo "Available commands:"
+  echo "   new - Generate a new rest.li project skeleton.\n"
+}
+
+if [ $# -lt 1 ]
+then
+  help
+  exit
+fi
+
+COMMAND="$1"
+case $COMMAND in
+"run") "$JAVA" -Xmx512M -jar $absolute_base_dir/bin/sbt/sbt-launch.jar @$absolute_base_dir/bin/g8/giter8.launchconfig "file://$absolute_base_dir"
+   ;;
+*) echo "Unrecognized command: $COMMAND\n"
+   help
+   ;;
+esac
