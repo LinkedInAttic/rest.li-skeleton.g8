@@ -28,8 +28,34 @@ TODO
 * add a example generated test
 
 Development
-===========
+-----------
 
-To test changes to a skeleton locally, provide the location of the checked out restli-skeleton project to g8 as the first argument, e.g.:
+To make changes to a locally checked out copy of this project, make any changes and run:
 
-g8 file:///Users/jbetz/projects/restli-skeleton
+```
+bin/restli <args>
+```
+
+You should see a warning printed like:
+
+```
+[This appears to be local development checkout.  Using /.../restli-skeleton for RESTLI_HOME and skeleton]
+```
+
+This indicates that the locally checked out files will be used for everything, including the skeleton.
+
+Building
+--------
+
+Simply run:
+
+```
+./package
+```
+
+This will produce a tarball at:
+
+```
+dist/restli.tar.gz
+```
+
