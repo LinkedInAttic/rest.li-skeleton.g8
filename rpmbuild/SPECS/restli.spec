@@ -5,7 +5,7 @@
 %define          debug_package %{nil}
 %define        __os_install_post %{_dbpath}/brp-compress
 
-Name:	rest.li
+Name:	restli
 Version:	0.0.1
 Release:	1%{?dist}
 Summary:	A command line utility for Rest.li, a REST framework.

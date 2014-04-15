@@ -1,4 +1,8 @@
 #!/bin/sh
 
 dir=`dirname $0`
-rpmbuild --clean $dir/SPECS/restli.spec
+
+if type rpmbuild 2>/dev/null; then
+  rpmbuild --define "'_topdir $dir'" --clean $dir/SPECS/restli.spec
+fi
+

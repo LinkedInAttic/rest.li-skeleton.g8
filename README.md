@@ -47,15 +47,51 @@ This indicates that the locally checked out files will be used for everything, i
 Building
 --------
 
-Simply run:
+Run:
 
 ```
 ./package
 ```
 
-This will produce a tarball at:
+This will produce a tarball in `/dist` as well as an RPM under `/rpmbuild/RPMS/x86_64`.
+
+Packaging
+=========
+
+Homebrew (mac)
+--------------
+
+'Library/Formula/restli.rb' is a valid homebrew tap.  To test locally:
 
 ```
-dist/restli.tar.gz
+cp Library/Formula/restli.rb /usr/local/Library/Formula/restli.rb
+brew install restli
 ```
 
+Once published,  developers should simply be able to do:
+
+```
+brew install restli
+```
+
+to uninstall:
+
+```
+brew uninstall
+```
+
+RPM/Yum
+-------
+
+`rpmbuild` contains a RPM build setup.  To test locally:
+
+```
+./package
+sudo rpm -ivp rpmbuild/RPMS/x86_64/restli-*.rpm
+```
+
+to uninstall:
+
+```
+sudo rpm -e restli
+```
