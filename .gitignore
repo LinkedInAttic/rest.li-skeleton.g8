@@ -1,4 +1,5 @@
 dist
+build
 rpmbuild/RPMS
 rpmbuild/SRPMS
 rpmbuild/SOURCES

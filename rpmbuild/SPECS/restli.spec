@@ -38,7 +38,6 @@ echo 'RESTLI_HOME=/usr/local/lib/restli /usr/local/lib/restli/bin/restli $@' > %
 %defattr(644,root,root)
 /usr/local/lib/restli/bin/g8/giter8.launchconfig
 /usr/local/lib/restli/bin/sbt/sbt-launch.jar
-/usr/local/lib/restli/bin/README.md
 %defattr(775,root,root)
 /usr/local/lib/restli/bin/restli
 /usr/local/bin/restli

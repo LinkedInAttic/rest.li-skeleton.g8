@@ -33,7 +33,7 @@ Development
 To make changes to a locally checked out copy of this project, make any changes and run:
 
 ```
-bin/restli <args>
+bin/modular/restli <args>
 ```
 
 You should see a warning printed like:
@@ -53,7 +53,10 @@ Run:
 ./package
 ```
 
-This will produce a tarball in `/dist` as well as an RPM under `/rpmbuild/RPMS/x86_64`.
+This will produce:
+* `/dist/bundled/rest.li-<version>.tar.gz`, that contains g8 as well the restli cli tool, for package managers where g8 is unavailable
+* `/dist/modular/rest.li-<version>.tar.gz`, that contains just the restli cli tool, for package managers where g8 is available
+* An RPM under `/rpmbuild/RPMS/x86_64` for rpm and yum package managers.
 
 Packaging
 =========
