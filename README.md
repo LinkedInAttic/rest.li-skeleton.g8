@@ -92,7 +92,7 @@ RPM/Yum
 
 ```
 make all
-sudo rpm -ivp rpmbuild/RPMS/x86_64/restli-*.rpm
+sudo rpm -ivp dist/rpm/restli-*.rpm
 ```
 
 to uninstall:
