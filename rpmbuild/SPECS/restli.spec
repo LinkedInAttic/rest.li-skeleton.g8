@@ -17,7 +17,7 @@
 %define        __os_install_post %{_dbpath}/brp-compress
 
 Name:	restli
-Version:	%{restlit_version}
+Version:	%{restli_version}
 Release:	1%{?dist}
 Summary:	A command line utility for Rest.li, a REST framework.
 Group:		Development/Tools
