@@ -1,0 +1,14 @@
+#!/bin/sh
+
+version="0.0.1"
+pkg_name="rest.li-$version"
+tar_file="$pkg_name.tar.gz"
+
+mkdir -p dist
+cp -r bin "dist/$pkg_name"
+pushd dist
+echo "creating $tar_file"
+tar -czf $tar_file $pkg_name
+popd
+
+cp dist/$tar_file rpmbuild/SOURCES/$tar_file

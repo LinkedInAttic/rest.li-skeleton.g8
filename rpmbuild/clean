@@ -1,3 +1,4 @@
 #!/bin/sh
 
-rpmbuild --clean SPECS/restli.spec
+dir=`dirname $0`
+rpmbuild --clean $dir/SPECS/restli.spec
