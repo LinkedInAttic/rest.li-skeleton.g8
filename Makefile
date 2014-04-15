@@ -19,31 +19,37 @@ VERSION = 0.0.1
 PKG_NAME = restli-$(VERSION)
 TAR_FILE_NAME = $(PKG_NAME).tar.gz
 
-BUILDS = modular bundled
-
+# tar the contents of any bin/{build} directory
 build/%/$(TAR_FILE_NAME): bin/%/*
 	mkdir -p "$(@D)/$(PKG_NAME)"
 	cp -r $(<D)/* $(@D)/$(PKG_NAME)/
 	cd $(@D) && tar -czf $(TAR_FILE_NAME) $(PKG_NAME)
 
+# copy built tar files to dist
 dist/%/$(TAR_FILE_NAME): build/%/$(TAR_FILE_NAME)
 	mkdir -p $(@D)
 	cp $< $@
 
+# copy tar from dist into RPM SOURCES directory for RPM generation
 rpmbuild/SOURCES/$(TAR_FILE_NAME): dist/bundled/$(TAR_FILE_NAME)
 	cp $< $@
 
+# generate RPM from tar file in RPM SOURCES directory
 rpmbuild/RPMS/x86_64/%.rpm: rpmbuild/SOURCES/$(TAR_FILE_NAME)
 	cd rpmbuild && VERSION=$(VERSION) rpmbuild --define "'_topdir $(<D)/..'" -ba SPECS/restli.spec
 
+# copy generated RPM from RPMS directory into dist
 dist/rpm/%.rpm: rpmbuild/RPMS/x86_64/%.rpm
 	mkdir -p $(@D)
 	cp  $< $@
 
+# all tar tasks
 tars: dist/bundled/$(TAR_FILE_NAME) dist/modular/$(TAR_FILE_NAME)
 
+# all rpm tasks
 rpm: dist/rpm/restli-$(VERSION)-1.el6.x86_64.rpm
 
+# all tasks
 all: tars rpm
 
 clean:
