@@ -19,13 +19,15 @@ export PATH=$RESTLI_HOME/bin:$PATH
 
 TODO
 ----
+
+* extend generator to allow dependency injection to be used (pick guice or spring)
+* extend generator to produce an empty skeleton with no sample code
+* add a example generated test
+
 * publish into homebrew, apt-get and yum (windows?)
 * Put online and adjust tutorials and such to make use of it
 * update webpage with detail on 'getting started' page
 * create a command line player based demo
-* extend generator to allow dependency injection to be used (pick guice or spring)
-* extend generator to produce an empty skeleton with no sample code
-* add a example generated test
 
 Development
 -----------
@@ -89,7 +91,7 @@ RPM/Yum
 `rpmbuild` contains a RPM build setup.  To test locally:
 
 ```
-./package
+make all
 sudo rpm -ivp rpmbuild/RPMS/x86_64/restli-*.rpm
 ```
 
