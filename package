@@ -11,5 +11,6 @@ echo "creating $tar_file"
 tar -czf $tar_file $pkg_name
 popd
 
+mkdir -p rpmbuild/SOURCES
 cp dist/$tar_file rpmbuild/SOURCES/$tar_file
 rpmbuild/build-rpm
