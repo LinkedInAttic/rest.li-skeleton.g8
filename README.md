@@ -1,13 +1,19 @@
 Rest.li Tool
 ============
 
-Installing with Homebrew (mac)
-------------------------------
+A command line tool for [rest.li](http://rest.li).
+
+Features:
+* Generate skeleton rest.li projects.
+
+Installing
+----------
+
+### With Homebrew
 
 TODO
 
-Manual Installation
--------------------
+### Manual Installation
 
 Install [giter8](https://github.com/n8han/giter8) either manually of using homebrew (brew install giter8).
 
