@@ -34,7 +34,7 @@ rpmbuild/SOURCES/$(TAR_FILE_NAME): dist/bundled/$(TAR_FILE_NAME)
 	cp $< $@
 
 rpmbuild/RPMS/x86_64/%.rpm: rpmbuild/SOURCES/$(TAR_FILE_NAME)
-	cd rpmbuild && rpmbuild --define "'_topdir $(<D)/..'" --define "'restli_version $(VERSION)'" -ba SPECS/restli.spec
+	cd rpmbuild && VERSION=$(VERSION) rpmbuild --define "'_topdir $(<D)/..'" -ba SPECS/restli.spec
 
 dist/rpm/%.rpm: rpmbuild/RPMS/x86_64/%.rpm
 	mkdir -p $(@D)

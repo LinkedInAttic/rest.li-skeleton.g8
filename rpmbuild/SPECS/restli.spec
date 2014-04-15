@@ -12,18 +12,19 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-%define        __spec_install_post %{nil}
-%define          debug_package %{nil}
-%define        __os_install_post %{_dbpath}/brp-compress
+%define   __spec_install_post %{nil}
+%define   debug_package %{nil}
+%define   __os_install_post %{_dbpath}/brp-compress
+%define   restli_version %(echo $VERSION)
 
-Name:	restli
-Version:	%{restli_version}
-Release:	1%{?dist}
-Summary:	A command line utility for Rest.li, a REST framework.
-Group:		Development/Tools
-License:	apache 2.0
-URL:	http://rest.li
-Source0:	%{name}-%{version}.tar.gz
+Name:     restli
+Version:  %{restli_version}
+Release:  1%{?dist}
+Summary:  A command line utility for Rest.li, a REST framework.
+Group:    Development/Tools
+License:  apache 2.0
+URL:      http://rest.li
+Source0:  %{name}-%{version}.tar.gz
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
