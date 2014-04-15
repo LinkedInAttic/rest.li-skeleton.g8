@@ -1,7 +1,0 @@
-#!/bin/sh
-
-dir=`dirname $0`
-
-if type rpmbuild 2>/dev/null; then
-  rpmbuild --define "'_topdir $dir'" -ba $dir/SPECS/restli.spec
-fi

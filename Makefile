@@ -1,3 +1,5 @@
+.PHONY: clean
+
 VERSION = 0.0.1
 
 PKG_NAME = restli-$(VERSION)
@@ -18,17 +20,20 @@ rpmbuild/SOURCES/$(TAR_FILE_NAME): dist/bundled/$(TAR_FILE_NAME)
 	cp $< $@
 
 rpmbuild/RPMS/x86_64/%.rpm: rpmbuild/SOURCES/$(TAR_FILE_NAME)
-	cd rpmbuild && rpmbuild --define "'_topdir $(<D)/..'" -ba $dir/SPECS/restli.spec
+	cd rpmbuild && rpmbuild --define "'_topdir $(<D)/..'" -ba SPECS/restli.spec
 
-rpm: rpmbuild/RPMS/x86_64/%.rpm
+dist/rpm/%.rpm: rpmbuild/RPMS/x86_64/%.rpm
 	mkdir -p $(@D)
 	cp  $< $@
 
 tars: dist/bundled/$(TAR_FILE_NAME) dist/modular/$(TAR_FILE_NAME)
 
+rpm: dist/rpm/restli-$(VERSION)-1.el6.x86_64.rpm
+
 all: tars rpm
 
 clean:
+	rm -rf rpmbuild/RPMS/*
 	rm -rf rpmbuild/SOURCES/*
 	rm -rf dist
 	rm -rf build
