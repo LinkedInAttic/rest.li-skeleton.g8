@@ -1,5 +1,5 @@
-Rest.li Tool
-============
+Rest.li Project Generator Tool
+==============================
 
 A command line tool for [rest.li](http://rest.li).
 
@@ -11,7 +11,9 @@ Installing
 
 ### With Homebrew
 
-TODO
+```
+brew install restli
+```
 
 ### Manual Installation
 

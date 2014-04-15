@@ -27,9 +27,15 @@ err() {
 
 help () {
   name=`basename $0`
-  err "Usage : $name <command>" 
+  err "Usage : $name <command> [options]" 
   err "Available commands:"
-  echo "   new [skeleton file path or git-url] - Generate a new rest.li project skeleton.\n"
+  echo "   new - Generate a new rest.li project skeleton."
+  echo "     options:"
+  echo "       --name=<name>"
+  echo "       --organization=<org>"
+  echo "       --restli_resource=<resource>"
+  echo "       --restli_resource_entity=<entity>"
+  echo ""
 }
 
 dir=`dirname $0`
@@ -65,12 +71,10 @@ if [ $# -lt 1 ]; then
 fi
 
 COMMAND="$1"
+shift
 case $COMMAND in
 "new") 
-   if [ $# -ge 2 ]; then
-     skeleton=$2
-   fi
-   "$JAVA" -Xmx512M -jar $sbt_launcher @$g8_launch_config $skeleton
+   "$JAVA" -Xmx512M -jar $sbt_launcher @$g8_launch_config $skeleton "$@"
    ;;
 *) 
    err "Unrecognized command: $COMMAND\n"
