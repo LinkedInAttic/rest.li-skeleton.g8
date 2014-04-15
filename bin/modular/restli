@@ -14,7 +14,7 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-GIT_SKELETON="git://gitli.corp.linkedin.com/restli-skeleton/restli-skeleton.git"
+GIT_SKELETON="git://github.com/linkedin/rest.li-skeleton.git"
 SKELETON_PROPERTIES_PATH="src/main/g8/default.properties"
 
 skeleton=$GIT_SKELETON

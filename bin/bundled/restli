@@ -14,9 +14,9 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-GIT_SKELETON="git://gitli.corp.linkedin.com/restli-skeleton/restli-skeleton.git"
-SBT_LAUNCHER_PATH="bin/sbt/sbt-launch.jar"
-G8_LAUNCH_CONFIG_PATH="bin/g8/giter8.launchconfig"
+GIT_SKELETON="git://github.com/linkedin/rest.li-skeleton.git"
+SBT_LAUNCHER_PATH="sbt/sbt-launch.jar"
+G8_LAUNCH_CONFIG_PATH="g8/giter8.launchconfig"
 SKELETON_PROPERTIES_PATH="src/main/g8/default.properties"
 
 skeleton=$GIT_SKELETON
