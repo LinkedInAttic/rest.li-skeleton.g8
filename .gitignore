@@ -1,1 +1,4 @@
-dist/
+dist
+rpmbuild/RPMS
+rpmbuild/SRPMS
+rpmbuild/project

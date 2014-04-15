@@ -1,8 +1,0 @@
-#!/bin/sh
-
-mkdir -p dist
-cp -r bin dist/restli
-pushd dist
-echo "creating restli.tar.gz"
-tar -czf restli.tar.gz restli
-popd

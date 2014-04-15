@@ -5,7 +5,7 @@
 %define          debug_package %{nil}
 %define        __os_install_post %{_dbpath}/brp-compress
 
-Name:	Rest.li
+Name:	rest.li
 Version:	0.0.1
 Release:	1%{?dist}
 Summary:	A command line utility for Rest.li, a REST framework.
@@ -27,7 +27,18 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %install
 rm -rf %{buildroot}
-mkdir -p  %{buildroot}
+mkdir -p  %{buildroot}/usr/local/lib/restli/bin
+mkdir -p  %{buildroot}/usr/local/bin
 
 # in builddir
-cp -a * %{buildroot}
+cp -a * %{buildroot}/usr/local/lib/restli/bin
+echo 'RESTLI_HOME=/usr/local/lib/restli /usr/local/lib/restli/bin/restli $@' > %{buildroot}/usr/local/bin/restli
+
+%files
+%defattr(644,root,root)
+/usr/local/lib/restli/bin/g8/giter8.launchconfig
+/usr/local/lib/restli/bin/sbt/sbt-launch.jar
+/usr/local/lib/restli/bin/README.md
+%defattr(775,root,root)
+/usr/local/lib/restli/bin/restli
+/usr/local/bin/restli

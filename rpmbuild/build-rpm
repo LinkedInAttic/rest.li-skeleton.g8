@@ -1,0 +1,3 @@
+#!/bin/sh
+
+rpmbuild -ba SPECS/restli.spec

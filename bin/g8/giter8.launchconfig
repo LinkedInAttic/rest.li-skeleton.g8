@@ -9,5 +9,3 @@
   local
   scala-tools-releases
   maven-central
-[boot]
-  directory: /usr/local/Cellar/giter8/0.6.0/boot
