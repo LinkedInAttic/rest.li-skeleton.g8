@@ -1,149 +1,83 @@
-Rest.li Project Generator Tool
-==============================
+Rest.li Project Skeleton
+========================
 
-A command line tool for [rest.li](http://rest.li).
+A project skeleton generator for [rest.li](http://rest.li).
 
-Features:
-* Generate skeleton rest.li projects.
+Requirements
+------------
 
-Installing
+* Java 1.6+
+* <a href="http://www.gradle.org/">Gradle</a> 1.8+
+* <a href="https://github.com/n8han/giter8">Giter8</a>
+
+Setup
+-----
+
+Install [giter8](https://github.com/n8han/giter8) either manually:
+
+```
+curl https://raw.github.com/n8han/conscript/master/setup.sh | sh
+cs n8han/giter8
+```
+
+or using homebrew:
+
+```
+brew update && brew install giter8
+```
+
+Try it Out
 ----------
 
-### With Homebrew
-
 ```
-brew install restli
-```
+$ g8 linkedin/rest.li-skeleton
 
-### Manual Installation
+Generating a new Rest.li project. 
 
-Install [giter8](https://github.com/n8han/giter8) either manually of using homebrew (brew install giter8).
+organization [org.example]: org.example
+name [fortunes]: fortunes
+restli_resource [fortunes]: fortunes
+restli_resource_entity [Fortune]: Fortune
 
-Download [restli.tar.gz](http://rest.li/releases/restli-tool/0.0.1/restli-0.0.1.tar.gz) and unzip it to wherever you want it installed, e.g.:
-
-```
-tar -zxf restli.tar.gz -C /usr/local
+Template applied in ./fortunes
 ```
 
-Add it's bin to your path, usually, in a shell profile (e.g. ~/.bash_profile), e.g.:
+The fortunes directory now contains a skeleton rest.li project. You can build it and test it, .e.g.:
 
 ```
-export PATH=/usr/local/restli-<version>/bin:$PATH
+cd fortunes
+gradle build
+...
+
+gradle JettyRunWar
+...
+> Building 90% > :fortunes-server:jettyRunWar > Running at http://localhost:8080/fortunes-server
+
+## in another terminal, do:
+
+curl http://localhost:8080/fortunes-server/fortunes/1
+...
+{"message":"Hello, Rest.li!"}
+```
+
+To modify your rest.li resource, simply edit:
+
+```
+fortunes-server/src/main/java/org/example/fortunes/impl/FortunesResource.java
 ```
 
 Usage
 -----
 
-```
-$ restli new
+To generate a project skeleton to fit your needs, set the properties:
 
-Generating a new Rest.li project. 
+* 'organization' - The java package name to use for your application
+* 'name' - The name of your application, used for the gradle project name
+* 'restli_resource' - The name of inital sample REST resource to generate, you can easily add others later
+* 'restli_resource_entity' - The name of the initial REST entity for your resource, you can add more of these later as well
 
-organization [org.example]:
-name [fortunes]:
-restli_resource [fortunes]:
-restli_resource_entity [Fortune]:
-
-Template applied in ./fortunes
-```
-
-The fortunes directory now contains a skeleton rest.li project:
+You can pass in any of these properties as arguments, if you do this, any you do not set will use their default value (e.g. 'fortunes').
 
 ```
-$ cd fortunes
-$ ls
-README.md         build.gradle      fortunes-api      fortunes-server   gradle.properties settings.gradle
+g8 linkedin/rest.li-skeleton --organization=com.company.project --name=project --restli_resource=examples --restli_resource_entity=Example
 ```
-
-You can build it and test it, .e.g.:
-
-```
-$ gradle build
-...
-
-$ gradle JettyRunWar
-...
-
-$ curl -v http://localhost:8080/fortunes-server/fortunes/1
-...
-{ "message": "Today is your lucky day!" }
-```
-
-Building Locally
-================
-
-To make changes to a locally checked out copy of this project, make any changes and run:
-
-```
-bin/modular/restli <args>
-```
-
-You should see a warning printed like:
-
-```
-[This appears to be local development checkout.  Using /.../restli-skeleton for RESTLI_HOME and skeleton]
-```
-
-This indicates that the locally checked out files will be used for everything, including the skeleton.
-
-
-Packaging and Publishing a new version
-======================================
-
-First run:
-```
-make all
-```
-
-This will produce:
-* `/dist/bundled/rest.li-<version>.tar.gz`, that contains g8 as well the restli cli tool, for package managers where g8 is unavailable
-* `/dist/modular/rest.li-<version>.tar.gz`, that contains just the restli cli tool, for package managers where g8 is available
-* An RPM under `/rpmbuild/RPMS/x86_64` for rpm and yum package managers.
-
-Homebrew (mac)
---------------
-
-'Library/Formula/restli.rb' is a valid homebrew tap.
-
-To test locally:
-
-```
-cp Library/Formula/restli.rb /usr/local/Library/Formula/restli.rb
-brew install restli
-```
-to uninstall:
-
-```
-brew uninstall
-```
-
-To publish:
-
-* bump version in restli.rb
-* update sha1 in restli.rb
-* clone homebrew/homebrew on github
-* apply changes and commit
-* submit a pull request to homebrew/homebrew
-
-Yum / RPM
----------
-
-`rpmbuild` contains a RPM build setup.
-
-To test locally:
-
-```
-make all
-sudo rpm -ivp dist/rpm/restli-*.rpm
-```
-
-to uninstall:
-
-```
-sudo rpm -e restli
-```
-
-To publish:
-
-* bump version in Makefile, build with new version (make clean; make all)
-* TODO: how to submit?
