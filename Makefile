@@ -31,15 +31,15 @@ dist/%/$(TAR_FILE_NAME): build/%/$(TAR_FILE_NAME)
 	cp $< $@
 
 # copy tar from dist into RPM SOURCES directory for RPM generation
-rpmbuild/SOURCES/$(TAR_FILE_NAME): dist/bundled/$(TAR_FILE_NAME)
+packagers/rpm/SOURCES/$(TAR_FILE_NAME): dist/bundled/$(TAR_FILE_NAME)
 	cp $< $@
 
 # generate RPM from tar file in RPM SOURCES directory
-rpmbuild/RPMS/x86_64/%.rpm: rpmbuild/SOURCES/$(TAR_FILE_NAME)
-	cd rpmbuild && VERSION=$(VERSION) rpmbuild --define "'_topdir $(<D)/..'" -ba SPECS/restli.spec
+packagers/rpm/RPMS/x86_64/%.rpm: packagers/rpm/SOURCES/$(TAR_FILE_NAME)
+	cd packagers/rpm && VERSION=$(VERSION) packagers/rpm --define "'_topdir $(<D)/..'" -ba SPECS/restli.spec
 
 # copy generated RPM from RPMS directory into dist
-dist/rpm/%.rpm: rpmbuild/RPMS/x86_64/%.rpm
+dist/rpm/%.rpm: packagers/rpm/RPMS/x86_64/%.rpm
 	mkdir -p $(@D)
 	cp  $< $@
 
@@ -53,8 +53,8 @@ rpm: dist/rpm/restli-$(VERSION)-1.el6.x86_64.rpm
 all: tars rpm
 
 clean:
-	rm -rf rpmbuild/RPMS/*
-	rm -rf rpmbuild/SOURCES/*
+	rm -rf packagers/rpm/RPMS/*
+	rm -rf packagers/rpm/SOURCES/*
 	rm -rf dist
 	rm -rf build
 
