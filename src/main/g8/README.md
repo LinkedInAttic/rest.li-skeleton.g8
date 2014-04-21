@@ -16,5 +16,5 @@ You can then run the server with:
 
 Once running, you can send a GET request to the server with:
 
-`curl -v http://localhost:8080/$name;format="norm"$-server/$restli_resource;format="camel"$/1`
+`curl http://localhost:8080/$restli_resource;format="camel"$/1`
 

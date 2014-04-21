@@ -39,7 +39,7 @@ help () {
 }
 
 dir=`dirname $0`
-parent=$(cd $dir/..; pwd)
+parent=$(cd $dir/../..; pwd)
 if [ -r $parent/$SKELETON_PROPERTIES_PATH ]; then
   echo "[This appears to be local development checkout.  Using $parent for RESTLI_HOME and skeleton]"
   RESTLI_HOME=$parent
@@ -51,8 +51,8 @@ if [ -z "$RESTLI_HOME" ]; then
   exit 1
 fi
 
-sbt_launcher=$RESTLI_HOME/$SBT_LAUNCHER_PATH
-g8_launch_config=$RESTLI_HOME/$G8_LAUNCH_CONFIG_PATH
+sbt_launcher=$RESTLI_HOME/bin/bundled/$SBT_LAUNCHER_PATH
+g8_launch_config=$RESTLI_HOME/bin/bundled/$G8_LAUNCH_CONFIG_PATH
 
 if [ ! -r $sbt_launcher ] || [ ! -r $g8_launch_config ]; then
   err "RESTLI_HOME is not set to a valid path.  It must be set to the root of the restli install."
