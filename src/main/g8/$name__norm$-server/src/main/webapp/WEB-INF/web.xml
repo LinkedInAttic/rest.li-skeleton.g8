@@ -24,7 +24,7 @@
   <!-- servlet mappings -->
   <servlet-mapping>
     <servlet-name>$name;format="Camel"$Servlet</servlet-name>
-    <url-pattern>/*</url-pattern>
+    <url-pattern>/$name;format="camel"$-server/*</url-pattern>
   </servlet-mapping>
 
 </web-app>
